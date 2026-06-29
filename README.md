@@ -89,18 +89,6 @@ http://localhost:8080
 
 ---
 
-## 📸 Screenshots
-
-You can add screenshots of:
-
-* Login Page
-* User Dashboard
-* Parking Slots
-* Booking History
-* Admin Dashboard
-* Manage Slots
-
----
 
 ## 👨‍💻 Developer
 
