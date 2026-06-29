@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Available Parking Slots | ParkEase</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-light">
+
+<!-- Navigation Bar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container">
+        <a class="navbar-brand fw-bold" href="/dashboard">ParkEase</a>
+
+        <div class="ms-auto">
+            <a href="/dashboard" class="btn btn-light btn-sm me-2">Dashboard</a>
+            <a href="/bookings" class="btn btn-light btn-sm me-2">My Bookings</a>
+            <a href="/logout" class="btn btn-danger btn-sm">Logout</a>
+        </div>
+    </div>
+</nav>
+
+<div class="container mt-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>Available Parking Slots</h2>
+        <span class="badge bg-success fs-6"
+              th:text="${slots.size()} + ' Slots Available'">
+        </span>
+    </div>
+
+    <!-- Message when no slots are available -->
+    <div class="alert alert-warning text-center"
+         th:if="${#lists.isEmpty(slots)}">
+
+        No parking slots are available at the moment.
+
+    </div>
+
+    <div class="row">
+
+        <div class="col-md-4 mb-4"
+             th:each="slot : ${slots}">
+
+            <div class="card shadow h-100">
+
+                <div class="card-header bg-primary text-white text-center">
+
+                    <h4 th:text="${slot.slotNumber}"></h4>
+
+                </div>
+
+                <div class="card-body">
+
+                    <p>
+                        <strong>Vehicle Type:</strong>
+                        <span th:text="${slot.vehicleType}"></span>
+                    </p>
+
+                    <p>
+                        <strong>Hourly Rate:</strong>
+
+                        ₹<span th:text="${slot.hourlyRate}"></span>
+
+                    </p>
+
+                    <p>
+
+                        <strong>Status:</strong>
+
+                        <span class="badge bg-success"
+                              th:text="${slot.status}">
+                        </span>
+
+                    </p>
+
+                </div>
+
+                <div class="card-footer bg-white">
+
+                    <form th:action="@{/book/{slotId}(slotId=${slot.slotId})}"
+                          method="post">
+
+                        <button class="btn btn-success w-100"
+                                type="submit">
+
+                            Book Now
+
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

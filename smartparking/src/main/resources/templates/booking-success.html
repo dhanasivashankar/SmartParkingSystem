@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>Booking Successful</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+</head>
+
+<body class="bg-light">
+
+<div class="container mt-5">
+
+    <div class="card shadow">
+
+        <div class="card-body text-center">
+
+            <h2 class="text-success">
+                🎉 Booking Confirmed
+            </h2>
+
+            <hr>
+
+            <h4>
+
+                Booking ID :
+                <span th:text="'BK' + ${booking.bookingId}"></span>
+
+            </h4>
+
+            <p>
+
+                <strong>Slot :</strong>
+
+                <span th:text="${booking.parkingSlot.slotNumber}"></span>
+
+            </p>
+
+            <p>
+
+                <strong>Vehicle :</strong>
+
+                <span th:text="${booking.parkingSlot.vehicleType}"></span>
+
+            </p>
+
+            <p>
+
+                <strong>Start Time :</strong>
+
+                <span th:text="${booking.startTime}"></span>
+
+            </p>
+
+            <p>
+
+                <strong>Status :</strong>
+
+                <span class="badge bg-success"
+                      th:text="${booking.bookingStatus}">
+                </span>
+
+            </p>
+
+            <a href="/dashboard"
+               class="btn btn-primary">
+
+                Go to Dashboard
+
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

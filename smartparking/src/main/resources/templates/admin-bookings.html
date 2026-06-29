@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>Admin - All Bookings</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+</head>
+
+<body class="bg-light">
+
+<div class="container mt-5">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+
+        <h2>All Bookings</h2>
+
+        <a href="/admin/dashboard"
+           class="btn btn-secondary">
+            Back
+        </a>
+
+    </div>
+
+    <table class="table table-bordered table-hover">
+
+        <thead class="table-dark">
+
+        <tr>
+
+            <th>Booking ID</th>
+            <th>User</th>
+            <th>Slot</th>
+            <th>Entry Time</th>
+            <th>Status</th>
+            <th>Action</th>
+
+        </tr>
+
+        </thead>
+
+        <tbody>
+
+        <tr th:each="booking : ${bookings}">
+
+            <td th:text="'PK2026' + ${booking.bookingId}"></td>
+
+            <td th:text="${booking.user.fullName}"></td>
+
+            <td th:text="${booking.parkingSlot.slotNumber}"></td>
+
+            <td th:text="${booking.startTime}"></td>
+
+            <td>
+
+                <span class="badge"
+                      th:classappend="${booking.bookingStatus == 'ACTIVE'} ? 'bg-success' : 'bg-primary'"
+                      th:text="${booking.bookingStatus}">
+                </span>
+
+            </td>
+
+            <td>
+
+                <form th:if="${booking.bookingStatus == 'ACTIVE'}"
+                      th:action="@{/admin/release/{id}(id=${booking.bookingId})}"
+                      method="post">
+
+                    <button class="btn btn-warning btn-sm">
+                        Release Vehicle
+                    </button>
+
+                </form>
+
+                <span th:if="${booking.bookingStatus != 'ACTIVE'}"
+                      class="text-success fw-bold">
+
+                    Released
+
+                </span>
+
+            </td>
+
+        </tr>
+
+        </tbody>
+
+    </table>
+
+</div>
+
+</body>
+
+</html>

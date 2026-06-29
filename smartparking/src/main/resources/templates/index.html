@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>ParkEase | Smart Parking Reservation System</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-light">
+
+<div class="container mt-5">
+
+    <div class="text-center mb-5">
+        <h2 class="fw-bold text-primary">ParkEase</h2>
+        <p class="text-muted">Smart Parking Reservation System</p>
+    </div>
+
+    <div class="row">
+
+        <!-- LOGIN -->
+
+        <div class="col-md-5">
+
+            <div class="card shadow">
+
+                <div class="card-header bg-primary text-white">
+                    Login
+                </div>
+
+                <div class="card-body">
+
+                    <form action="/login" method="post">
+
+                        <div class="mb-3">
+                            <label>Email</label>
+                            <input type="email"
+                                   name="email"
+                                   class="form-control"
+                                   required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label>Password</label>
+                            <input type="password"
+                                   name="password"
+                                   id="loginPassword"
+                                   class="form-control"
+                                   required>
+                        </div>
+
+                        <button class="btn btn-primary w-100">
+                            Login
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- REGISTER -->
+
+        <div class="col-md-7">
+
+            <div class="card shadow">
+
+                <div class="card-header bg-success text-white">
+                    Register
+                </div>
+
+                <div class="card-body">
+
+                    <div class="alert alert-success"
+                         th:if="${success}"
+                         th:text="${success}">
+                    </div>
+
+                    <div class="alert alert-danger"
+                         th:if="${error}"
+                         th:text="${error}">
+                    </div>
+
+                    <form th:action="@{/register}"
+                          th:object="${user}"
+                          method="post">
+
+                        <div class="mb-3">
+
+                            <label>Full Name</label>
+
+                            <input class="form-control"
+                                   th:field="*{fullName}"
+                                   required>
+
+                        </div>
+
+                        <div class="mb-3">
+
+                            <label>Email</label>
+
+                            <input type="email"
+                                   class="form-control"
+                                   th:field="*{email}"
+                                   required>
+
+                        </div>
+
+                        <div class="mb-3">
+
+                            <label>Password</label>
+
+                            <input type="password"
+                                   class="form-control"
+                                   id="registerPassword"
+                                   th:field="*{password}"
+                                   required>
+
+                        </div>
+
+                        <div class="mb-3">
+
+                            <label>Phone</label>
+
+                            <input class="form-control"
+                                   th:field="*{phone}">
+
+                        </div>
+
+                        <button class="btn btn-success w-100">
+                            Register
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

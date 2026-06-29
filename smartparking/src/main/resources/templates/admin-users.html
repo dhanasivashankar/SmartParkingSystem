@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Users | Admin</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+</head>
+
+<body class="bg-light">
+
+<div class="container mt-5">
+
+    <h2 class="mb-4">Registered Users</h2>
+
+    <table class="table table-bordered table-hover">
+
+        <thead class="table-dark">
+
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+        </tr>
+
+        </thead>
+
+        <tbody>
+
+        <tr th:each="user : ${users}">
+
+            <td th:text="${user.userId}"></td>
+            <td th:text="${user.fullName}"></td>
+            <td th:text="${user.email}"></td>
+            <td th:text="${user.phone}"></td>
+
+        </tr>
+
+        </tbody>
+
+    </table>
+
+    <a href="/admin/dashboard"
+       class="btn btn-secondary">
+
+        Back
+
+    </a>
+
+</div>
+
+</body>
+</html>
